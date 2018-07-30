@@ -2,7 +2,7 @@
   "name": "robo_homies",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kevin-kabore.github.io/jr-to-sr-roadmap/tree/master/robo_homies_PWA",
+  "homepage": "https://kevin-kabore.github.io/robo_homies_PWA",
   "dependencies": {
     "gh-pages": "^1.2.0",
     "react": "^16.4.1",

@@ -15,12 +15,15 @@ class MainPage extends Component {
     this.props.onRequestRobots();
   }
  
-  render() {
-    const { searchField, onSearchChange, robots, isPending } = this.props;
-    const filteredRobots = robots.filter(robot => {
+  filterRobots = () => {
+    return this.props.robots.filter(robot => {
       // returns all names that include search field
-      return robot.name.toLowerCase().includes(searchField.toLowerCase());
-    });
+      return robot.name.toLowerCase().includes(this.props.searchField.toLowerCase());
+    })
+  }
+  render() {
+    const { onSearchChange, robots, isPending } = this.props;
+
     return isPending ?
       <h1>Loading...</h1> : 
       (
@@ -29,7 +32,7 @@ class MainPage extends Component {
           <SearchBox searchChange={onSearchChange} />
           <Scroll>
             <ErrorBoundry>
-              <CardList robots={filteredRobots} />              
+              <CardList robots={this.filterRobots()} />              
             </ErrorBoundry>
           </Scroll>
         </div>

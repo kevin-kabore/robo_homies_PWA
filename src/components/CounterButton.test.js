@@ -17,9 +17,15 @@ describe('CounterButton Component', () => {
 		const mockColor = 'red';
 		const wrapper = shallow(<CounterButton color={mockColor}/>);
 		
-		wrapper.simulate('click');
-		wrapper.simulate('click');
+		wrapper.find('[id="counter"]').simulate('click');
+		wrapper.find('[id="counter"]').simulate('click');
 		expect(wrapper.state('count')).toEqual(2);
-		// expect(wrapper.state('count')).toEqual(1);
+	})
+
+	it('Will receive the color prop', () => {
+		const mockColor = 'red';
+		const wrapper = shallow(<CounterButton color={mockColor}/>);
+
+		expect(wrapper.prop('color')).toEqual('red');
 	})
 })

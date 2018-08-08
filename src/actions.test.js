@@ -9,7 +9,7 @@ import {
 import configureMockStore from 'redux-mock-store';
 import thunkMiddleware from 'redux-thunk';
 
-const mockStore = configureMockStore([thunkMiddleware]);
+const mockStore = configureMockStore([thunkMiddleware]); // to listen for dispatch functions from actions
 
 describe('Actions', () => {
 	it('Should create an action to search robots', () => {
@@ -23,7 +23,7 @@ describe('Actions', () => {
 	})
 
 	it('should handle requesting the robots api', () => {
-		const store = mockStore();
+		const store = mockStore(); // create fake store that has thunk middleware
 		store.dispatch(actions.requestUsers());
 		
 		const action = store.getActions();

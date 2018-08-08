@@ -5,7 +5,7 @@ import {
 	REQUEST_USERS_FAILED
 } from './types.js';
 
-import apiCall from './api/api'
+import { apiCall } from './api/api'
 
 export const setSearchField = (text) => ({
 	type: CHANGE_SEARCH_FIELD,

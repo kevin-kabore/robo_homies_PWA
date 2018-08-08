@@ -9,7 +9,7 @@ import * as actions from './actions';
 
 import * as reducers from './reducers';
 
-describe('searchRobots', () => {
+describe('searchRobots reducer', () => {
 	const initialStateSearch = {
 		searchField: ''
 	};
@@ -25,15 +25,41 @@ describe('searchRobots', () => {
 	});
 });
 
-describe('requestRobots', () => {
-	it('should return the initial state', () => {
-		const initialStateUsers = {
+let initialStateUsers;
+beforeEach(() => {
+	initialStateUsers = {
 			isPending: false,
 			users: [],
 			error: ''
 		}
-
+})
+describe('requestUsers reducer', () => {
+	it('should return the initial state', () => {
 		expect(reducers.requestUsers(undefined, {})).toEqual(initialStateUsers)
+	})
+
+	it('should handle the REQUEST_USERS_PENDING action', () => {
+		expect(reducers.requestUsers(initialStateUsers, {type: REQUEST_USERS_PENDING})).toEqual({...initialStateUsers, isPending: true})
+	})
+
+	it('should handle the REQUEST_USERS_SUCCESS action', () => {
+		expect(reducers.requestUsers(initialStateUsers, { 
+			type: REQUEST_USERS_SUCCESS,
+			payload: [{
+				id: 12,
+				name: 'test',
+				email: 'email@email.com'
+			}] 
+		})).toEqual({...initialStateUsers, users: [{
+				id: 12,
+				name: 'test',
+				email: 'email@email.com'
+			}] })
+	})
+
+
+	it('should handle the REQUEST_USERS_FAILED action', () => {
+		expect(reducers.requestUsers(initialStateUsers, {type: REQUEST_USERS_FAILED, payload: 'ERROR'})).toEqual({...initialStateUsers, error: 'ERROR'})
 	})
 })
 
